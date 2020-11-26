@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- #Include file="Connecttion.asp" -->
+    <%
+        sql="Select * from Table1"
+        rs = Conn.execute(sql)  
+    %>
+    <h3 align=center>
+        Danh sach
+    </h3>
+    <table width=100% border="1">
+        <tr>
+            <th>Ho ten</th>
+            <th>So dien thoai</th>
+            <th>Dia chi</th>
+        </tr>
+        <% while not rs.eof %>
+        <tr>
+            <td><%=rs("SID")%></td>
+            <td><%=rs("SName")%></td>
+            <td><%=rs("SUser")%></td>
+            <td><%=rs("SPass")%></td>
+            <td><%=rs("SAge")%></td>
+            <td><% if rs("SStatus")=1 then response.write("Moi tao")
+                    else  response.write("Ngung")
+                    end if
+                %></td>
+        </tr>
+        <% rs.movenext
+        wend
+        conn.close
+        %>
+    </table>
+</body>
+</html>
